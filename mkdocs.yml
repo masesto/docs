@@ -60,8 +60,8 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
+  - search
   - awesome-pages
-  - tags
   
 copyright: |
   &copy; 2023 <a href="https://github.com/masesto"  target="_blank" rel="noopener">by Shele</a>
