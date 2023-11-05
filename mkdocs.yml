@@ -3,8 +3,8 @@ site_url: https://masesto.github.io/docs/
 theme:
   name: material
   font:
-    text: Red Hat Text
-    code: Red Hat Text
+    text: Roboto
+    code: Roboto Mono
   features:
     - navigation.instant
     - navigation.tabs
@@ -68,8 +68,12 @@ nav:
   - Home: index.md
   - Guides:
     - guides/index.md
-    - Rocky Installation: guides/rocky-installation.md
-    - Alma Installation: guides/alma-installation.md
+    - Rocky Linux 9 Installation: guides/rocky-installation.md
+    - Alma Linux 9 Installation: guides/alma-installation.md
+    - Linux Commands Basics: guides/linux-basic.md
+    - Linux Commands: guides/linux-commands.md
+    - Linux Advanced Commands: guides/advanced-commands.md
+    - VI Editor: guides/vi-editor.md
   - Books:
     - books/index.md
   
