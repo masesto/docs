@@ -61,8 +61,17 @@ markdown_extensions:
 
 plugins:
   - search
-  - awesome-pages
-  - tabs
+
+
+# Page tree
+nav:
+  - Home: index.md
+  - Guides:
+    - guides/index.md
+    - Rocky Installation: guides/rocky-installation.md
+    - Alma Installation: guides/alma-installation.md
+  - Books:
+    - books/index.md
   
 copyright: |
-  &copy; 2023 <a href="https://github.com/masesto"  target="_blank" rel="noopener">by Shele</a>
+  &copy; 20233 <a href="https://github.com/masesto"  target="_blank" rel="noopener">by Shele</a>
