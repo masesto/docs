@@ -14,7 +14,7 @@ theme:
     - content.code.annotate
     - content.code.copy
     - content.tooltips
-    # - navigation.instant
+    - navigation.instant
     - navigation.footer
     - navigation.indexes
     - navigation.tabs
@@ -81,7 +81,9 @@ markdown_extensions:
 plugins:
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-
+  - minify:
+      minify_html: true
+      
 
 # Page tree
 nav:
