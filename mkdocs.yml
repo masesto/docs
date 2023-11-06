@@ -96,6 +96,7 @@ nav:
     - Linux Commands: guides/linux-commands.md
     - Linux Advanced Commands: guides/advanced-commands.md
     - VI Editor: guides/vi-editor.md
+    - Building and Installing Custom Linux Kernels: guides/custom-linux-kernel.md
   - Books:
     - books/index.md
   
