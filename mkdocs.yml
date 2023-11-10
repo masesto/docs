@@ -18,11 +18,11 @@ theme:
     - navigation.footer
     - navigation.indexes
     - navigation.tabs
-    - navigation.sections
-    - navigation.tabs
+    #- navigation.sections
     - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
+    #- navigation.expand
     - search.highlight
     - search.share
     - search.suggest
@@ -96,9 +96,18 @@ nav:
     - Linux Commands: guides/linux-commands.md
     - Linux Advanced Commands: guides/advanced-commands.md
     - VI Editor: guides/vi-editor.md
+    - How to install GLPI on Ubuntu: guides/glpi-install.md
     - Building and Installing Custom Linux Kernels: guides/custom-linux-kernel.md
   - Books:
     - books/index.md
+    - System Administrators Guide:
+      - Learning Linux with Rocky: books/admin_guide/00-toc.md
+      - Introduction to Linux: books/admin_guide/01-presentation.md
+      - Linux Commands: books/admin_guide/03-commands.md
+    - Learning Ansible:
+      - Learning Ansible with Rocky: books/learning_ansible/00-toc.md
+
   
+
 copyright: |
   Copyright &copy; 2023 <a href="https://github.com/masesto"  target="_blank" rel="noopener">by Shele</a>
