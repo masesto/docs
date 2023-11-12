@@ -173,6 +173,51 @@ Save and exit the text editor.
 
 ## Step 6: Configure Virtual Host
 
+## Apache configuration
+
+Here is a virtual host configuration example for **Apache 2** web server.
+
+!!! Warning
+    The following configuration is only suitable for GLPI version 10.0.7 or later.
+
+```
+
+<VirtualHost *:80>
+    ServerName glpi.localhost
+
+    DocumentRoot /var/www/glpi/public
+
+    # If you want to place GLPI in a subfolder of your site (e.g. your virtual host is serving multiple applications),
+    # you can use an Alias directive. If you do this, the DocumentRoot directive MUST NOT target the GLPI directory itself.
+    # Alias "/glpi" "/var/www/glpi/public"
+
+    <Directory /var/www/glpi/public>
+        Require all granted
+
+        RewriteEngine On
+
+        # Redirect all requests to GLPI router, unless file exists.
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ index.php [QSA,L]
+    </Directory>
+</VirtualHost>
+
+```
+
+!!! Note
+    If you cannot change the **Apache** configuration (e.g. you are using a shared hosting), you can use a **.htaccess** file.
+
+
+```
+
+# /var/www/glpi/.htaccess
+RewriteBase /
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public
+RewriteRule ^(.*)$ public/index.php [QSA,L]
+
+```
+
 Create a new virtual host configuration file for your domain using a text editor (like Nano or Vim).
 
 ```
@@ -293,48 +338,3 @@ On first login, you’re asked to change the password. Please set new password b
 ![image](images/install-glpi-centos-8-06.png)
 
 This marks the end of installing GLPI on Ubuntu 22.04. The next sections are about adding assets and other IT Management stuff for your infrastructure/environment. For this, please refer to the [official GLPI documentation](https://glpi-project.org/resources/#documentation)
-
-## Apache configuration
-
-Here is a virtual host configuration example for **Apache 2** web server.
-
-!!! Warning
-    The following configuration is only suitable for GLPI version 10.0.7 or later.
-
-```
-
-<VirtualHost *:80>
-    ServerName glpi.localhost
-
-    DocumentRoot /var/www/glpi/public
-
-    # If you want to place GLPI in a subfolder of your site (e.g. your virtual host is serving multiple applications),
-    # you can use an Alias directive. If you do this, the DocumentRoot directive MUST NOT target the GLPI directory itself.
-    # Alias "/glpi" "/var/www/glpi/public"
-
-    <Directory /var/www/glpi/public>
-        Require all granted
-
-        RewriteEngine On
-
-        # Redirect all requests to GLPI router, unless file exists.
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteRule ^(.*)$ index.php [QSA,L]
-    </Directory>
-</VirtualHost>
-
-```
-
-!!! Note
-    If you cannot change the **Apache** configuration (e.g. you are using a shared hosting), you can use a **.htaccess** file.
-
-
-```
-
-# /var/www/glpi/.htaccess
-RewriteBase /
-RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/public
-RewriteRule ^(.*)$ public/index.php [QSA,L]
-
-```
