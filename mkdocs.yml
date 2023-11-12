@@ -3,7 +3,7 @@ site_url: https://masesto.github.io/docs/
 site_description: >-
   Documentation how to install Linux or Unix
 theme:
-  name: material
+  name: readthedocs
   font:
     text: Roboto
     code: Roboto Mono

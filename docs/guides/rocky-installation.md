@@ -190,7 +190,7 @@ The configurable properties of the selected network adapter appear in the right 
 
 !!! Note
 
-    On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our demo system.
+    On our sample system, we have two Ethernet devices `ens3` and `ens4`, all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our demo system.
 
 Verify the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
 We'll accept all the defaults in this section.

@@ -49,7 +49,7 @@ As usual, ensure your packages list is up to date.
 
 ```
 
-$ sudo apt update
+sudo apt update
 
 ```
 
@@ -57,7 +57,7 @@ You can also upgrade installed packages by running the following command.
 
 ```
 
-$ sudo apt -y upgrade
+sudo apt -y upgrade
 
 ```
 
@@ -67,16 +67,16 @@ GLPI requires a relational database to store its data. Let’s install MariaDB o
 
 ```
 
-$ sudo apt update
-$ sudo apt install mariadb-server
-$ sudo mysql_secure_installation
+sudo apt update
+sudo apt install mariadb-server
+sudo mysql_secure_installation
 
 ```
 
 Create a database and user for GLPI.
 
 ```
-$ sudo mysql -u root -p
+sudo mysql -u root -p
 
 CREATE DATABASE glpi;
 CREATE USER 'glpi'@'localhost' IDENTIFIED BY 'StrongDBPassword';
@@ -92,7 +92,7 @@ We need to have Apache web server and PHP installed for GLPI to run and be acces
 
 ```
 
-$ sudo apt -y install php php-{curl,zip,bz2,gd,imagick,intl,apcu,memcache,imap,mysql,cas,ldap,tidy,pear,xmlrpc,pspell,mbstring,json,iconv,xml,gd,xsl}
+sudo apt -y install php php-{curl,zip,bz2,gd,imagick,intl,apcu,memcache,imap,mysql,cas,ldap,tidy,pear,xmlrpc,pspell,mbstring,json,iconv,xml,gd,xsl}
 
 ```
 
@@ -100,7 +100,7 @@ Then install Apache and its PHP module.
 
 ```
 
-$ sudo apt -y install apache2 libapache2-mod-php
+sudo apt -y install apache2 libapache2-mod-php
 
 ```
 
@@ -108,7 +108,7 @@ Add the httpOnly flag to the cookie:
 
 ```
 
-$ sudo vim /etc/php/*/apache2/php.ini
+sudo nano /etc/php/*/apache2/php.ini
 session.cookie_httponly = on
 
 ```
@@ -121,9 +121,9 @@ Check for the latest stable release on the [Downloads](https://glpi-project.org/
 
 ```
 
-$ sudo apt-get -y install wget curl
-$ VER=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/latest|grep tag_name|cut -d '"' -f 4)
-$ wget https://github.com/glpi-project/glpi/releases/download/$VER/glpi-$VER.tgz
+sudo apt-get -y install wget curl
+VER=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/latest|grep tag_name|cut -d '"' -f 4)
+wget https://github.com/glpi-project/glpi/releases/download/$VER/glpi-$VER.tgz
 
 ```
 
@@ -131,7 +131,7 @@ Uncompress the downloaded the archive:
 
 ```
 
-$ tar xvf glpi-$VER.tgz
+tar xvf glpi-$VER.tgz
 
 ```
 
@@ -139,7 +139,7 @@ Move the created **glpi** folder to the **/var/www/html** directory.
 
 ```
 
-$ sudo mv glpi /var/www/html/
+sudo mv glpi /var/www/html/
 
 ```
 
@@ -147,13 +147,107 @@ Give Apache user ownership of the directory:
 
 ```
 
-$ sudo chown -R www-data:www-data /var/www/html/
+sudo chown -R www-data:www-data /var/www/html/
 
 ```
 
-## Step 5: Finish GLPI installation
+## Step 5: Configure Hosts File
 
-Visit your server IP or hostname URL on **/glpi**. If it is your local machine, you can use: http://Server_IP/glpi
+Edit the local hosts file to associate your domain with the server's IP address.
+
+```
+
+sudo nano /etc/hosts
+
+```
+
+Add a line like this, replacing *your_server_ip* with the actual IP address and *example.com* with your domain.
+
+```
+
+your_server_ip   glpi.example.com glpi
+
+```
+
+Save and exit the text editor.
+
+## Step 6: Configure Virtual Host
+
+Create a new virtual host configuration file for your domain using a text editor (like Nano or Vim).
+
+```
+
+sudo nano /etc/apache2/sites-available/glpi.example.com.conf
+
+```
+
+Add the following content, replacing example.com with your domain.
+
+```
+
+<VirtualHost *:80>
+    ServerName glpi.example.com
+
+    DocumentRoot /var/www/html/glpi/public
+
+    # If you want to place GLPI in a subfolder of your site (e.g. your virtual host is serving multiple applications),
+    # you can use an Alias directive. If you do this, the DocumentRoot directive MUST NOT target the GLPI directory itself.
+    # Alias "/glpi" "/var/www/html/glpi/public"
+
+    <Directory /var/www/html/glpi/public>
+        Require all granted
+
+        RewriteEngine On
+
+        # Redirect all requests to GLPI router, unless file exists.
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ index.php [QSA,L]
+    </Directory>
+</VirtualHost>
+
+```
+
+Save and exit the text editor.
+
+Enable the virtual host configuration.
+
+```
+
+sudo a2ensite glpi.example.com.conf
+
+```
+
+Then disable the default configuration file.
+
+```
+
+sudo a2dissite 000-default.conf
+
+```
+
+Rewrite configuration, restart and then test Apache.
+
+```
+
+sudo a2enmod rewrite
+
+```
+
+```
+
+sudo systemctl restart apache2
+
+```
+
+```
+
+sudo apache2ctl configtest
+
+```
+
+## Step 7: Finish GLPI installation
+
+Visit your server IP or hostname URL on **/glpi**. If it is your local machine, you can use: *http://Server_IP/glpi* or just **http://Server_IP** if you are setup Virtual Host in Apache.
 
 On the first page, Select your language.
 
