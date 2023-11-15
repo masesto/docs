@@ -20,7 +20,7 @@ Beginners and experienced database administrators use phpMyAdmin to interact wit
 !!! Note
     phpMyAdmin is a common target for cyberattacks, mainly due to misconfigurations or weak security settings. Connecting to a remote server and running phpMyAdmin over an unencrypted HTTP connection poses a security risk, as the data can be intercepted. For steps on setting up an encrypted connection using SSL/TLS certificates, please refer to our guide on SSL/TLS encryption.
 
-# Installing phpMyAdmin on Ubuntu
+## Installing phpMyAdmin on Ubuntu
 
 This guide assumes that you are installing phpMyAdmin on a system that is not publicly accessible over the internet, often referred to as a local system. Follow the steps below to install phpMyAdmin on Ubuntu 20.04 or 22.04:
 
