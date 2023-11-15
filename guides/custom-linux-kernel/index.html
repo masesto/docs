@@ -1,0 +1,1585 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation how to install Linux or Unix">
+      
+      
+        <meta name="author" content="Wale Soyinka">
+      
+      
+        <link rel="canonical" href="https://masesto.github.io/docs/guides/custom-linux-kernel/">
+      
+      
+        <link rel="prev" href="../phpmyadmin-install/">
+      
+      
+        <link rel="next" href="../../books/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Building and Installing Custom Linux Kernels - Shele Docs & Tutorials</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Shele Docs &amp; Tutorials" class="md-header__button md-logo" aria-label="Shele Docs & Tutorials" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Shele Docs & Tutorials
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building and Installing Custom Linux Kernels
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../books/" class="md-tabs__link">
+          
+  
+    
+  
+  Books
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Shele Docs &amp; Tutorials" class="md-nav__button md-logo" aria-label="Shele Docs & Tutorials" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Shele Docs & Tutorials
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rocky Linux 9 Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alma-installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alma Linux 9 Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Commands Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Advanced Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vi-editor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VI Editor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glpi-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to install GLPI on Ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phpmyadmin-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to install phpMyAdmin on Ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Building and Installing Custom Linux Kernels
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Building and Installing Custom Linux Kernels
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-kernel" class="md-nav__link">
+    The Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-kernel-source-code" class="md-nav__link">
+    The Kernel Source Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-versions-and-naming-conventions" class="md-nav__link">
+    Kernel versions and naming conventions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-prerequisite-tools-and-libraries" class="md-nav__link">
+    Installing prerequisite tools and libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-and-unpacking-the-linux-kernel" class="md-nav__link">
+    Downloading and unpacking the Linux Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-kernel" class="md-nav__link">
+    Building the Kernel
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sanitizing-the-build-environment" class="md-nav__link">
+    Sanitizing the build environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel-configuration" class="md-nav__link">
+    Kernel Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiling-the-kernel" class="md-nav__link">
+    Compiling the Kernel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-kernel" class="md-nav__link">
+    Installing the Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#booting-the-custom-kernel" class="md-nav__link">
+    Booting the custom Kernel
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Books
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Books
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Administrators Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            System Administrators Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/admin_guide/00-toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Learning Linux with Rocky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/admin_guide/01-presentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/admin_guide/03-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Learning Ansible
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Learning Ansible
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/learning_ansible/00-toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Learning Ansible with Rocky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-kernel" class="md-nav__link">
+    The Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-kernel-source-code" class="md-nav__link">
+    The Kernel Source Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-versions-and-naming-conventions" class="md-nav__link">
+    Kernel versions and naming conventions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-prerequisite-tools-and-libraries" class="md-nav__link">
+    Installing prerequisite tools and libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-and-unpacking-the-linux-kernel" class="md-nav__link">
+    Downloading and unpacking the Linux Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-kernel" class="md-nav__link">
+    Building the Kernel
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sanitizing-the-build-environment" class="md-nav__link">
+    Sanitizing the build environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel-configuration" class="md-nav__link">
+    Kernel Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiling-the-kernel" class="md-nav__link">
+    Compiling the Kernel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-kernel" class="md-nav__link">
+    Installing the Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#booting-the-custom-kernel" class="md-nav__link">
+    Booting the custom Kernel
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<p>In this guide, we’ll walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.</p>
+<div class="admonition warning">
+<p class="admonition-title">Kernel rebuilds are not recommended nor supported for Rocky Linux. Before attempting to build a custom kernel, please consider the following:</p>
+<ul>
+<li>Is the functionality you need available by installing a kernel module from <a href="https://elrepo.org">elrepo</a>?</li>
+<li>Is the functionality you need available as a separate module from the kernel itself?</li>
+<li>Rocky Linux and most other EL derivatives were designed to function as a complete environment. Replacing critical components can affect how the system acts.</li>
+<li>Most users no longer need to build their own kernel. You may simply need a kernel module/driver or perhaps build your own kernel module (kmod/dkms)</li>
+</ul>
+<p>As a final warning: If you break the kernel, you are responsible for fixing resulting issues on your system.</p>
+</div>
+<h2 id="the-kernel">The Kernel<a class="headerlink" href="#the-kernel" title="Permanent link">&para;</a></h2>
+<p>Most often, when people say <em>Linux</em>, they are usually referring to a "<em>Linux distribution</em>" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system.
+Distributions make use of code from various open-source projects that are independent of Linux.</p>
+<p>Linux is The kernel. The kernel literally sits right at the heart of the [operating system] matter.</p>
+<p>The only thing more fundamental than the kernel is the system hardware itself.
+Although the kernel is a small part of a complete Linux distribution, it is by far the most critical element. If the kernel fails or crashes, the rest of the system goes with it.</p>
+<h2 id="the-kernel-source-code">The Kernel Source Code<a class="headerlink" href="#the-kernel-source-code" title="Permanent link">&para;</a></h2>
+<p>The Rocky Linux distribution has the source code for the specific kernel version it supports available in one form or another. These could be in the form of a compiled binary (<em>.src.rpm), a source RPM (</em>.srpm), or the like.</p>
+<p>If you need to download a different (possibly newer) version than the one your specific Rocky Linux distro provides, the first place to look for the source code is at the official kernel web site:</p>
+<p><a href="https://www.kernel.org">www.kernel.org</a></p>
+<p>This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open-source software, distributions and general-purpose utilities.</p>
+<p>The list of mirrors is maintained at:</p>
+<p><a href="http://mirrors.kernel.org">mirrors.kernel.org</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user. However, the final steps that require actual installation or altering of system files and binaries need to be done with elevated privileges.</p>
+<p>We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the <code>O=~/build/kernel</code> option for all applicable invocations of make.</p>
+<p>Where <code>~/build/kernel</code> is equivalent to <code>/home/$USER/build/kernel</code> or  <code>$HOME/build/kernel</code></p>
+</div>
+<h2 id="kernel-versions-and-naming-conventions">Kernel versions and naming conventions<a class="headerlink" href="#kernel-versions-and-naming-conventions" title="Permanent link">&para;</a></h2>
+<p>The web site listing of kernels available will contain folders for v1.0, v2.5, v2.6, v3.0, v3.x, v4.x, v5.x, v6.x and so forth. Before you follow your natural inclination to get the latest version, make sure you understand how the Linux kernel versioning system works.</p>
+<p>The current convention is to name and number major new kernel releases as “Linux 5.x” (also called the vanilla or mainline kernels). Thus, the first of this series will be Linux version 5.0 (same as 5.0.0), the next will be Linux version 5.1 (same as 5.1.0), followed by Linux version 5.2, and so on.</p>
+<p>Any minor changes or updates within each major release version will be reflected by increments to the third digit. These are commonly referred to as stable point releases. Thus, the next stable point release for the 5.0.0 series kernel will be Linux version 5.0.1, followed by version 5.0.2, and so forth. Another way of stating this is to say, for example, that Linux version 5.0.4 is the fourth stable release based on the Linux 5.0.0 series.</p>
+<h2 id="installing-prerequisite-tools-and-libraries">Installing prerequisite tools and libraries<a class="headerlink" href="#installing-prerequisite-tools-and-libraries" title="Permanent link">&para;</a></h2>
+<p>A common source of failure encountered during the kernel build process may be caused by not having all the requisite software available for compiling and building the mainline Linux Kernel.  The missing tools and libraries can be installed using the DNF package manager on a Rocky Linux distro. We’ll take care of this in this section.</p>
+<ol>
+<li>
+<p>On a Rocky Linux distro, you can quickly get most of the necessary development tools installed by running this command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&gt; sudo dnf -y groupinstall &#39;C Development Tools and Libraries&#39;
+</code></pre></div>
+<p>If you get 'Module or Group 'C Development Tools and Libraries' is not available.' error the below command is equivalent to above:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt; sudo dnf -y groupinstall &#39;Development Tools&#39;
+</code></pre></div>
+</li>
+<li>
+<p>Some other libraries, header files, and applications can also be obtained by installing the following packages. Type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt; sudo dnf -y install \
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ncurses-devel openssl-devel elfutils-libelf-devel python3
+</code></pre></div>
+</li>
+<li>
+<p>Next, we need other utilities only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&gt; sudo dnf config-manager --set-enabled powertools
+</code></pre></div>
+</li>
+<li>
+<p>Finally, let’s install one of the needed packages from the Powertool repo. Type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&gt; sudo  dnf -y install dwarves
+</code></pre></div>
+</li>
+</ol>
+<p>That’s it for the prerequisite packages needed for actual Kernel building!</p>
+<h2 id="downloading-and-unpacking-the-linux-kernel">Downloading and unpacking the Linux Kernel<a class="headerlink" href="#downloading-and-unpacking-the-linux-kernel" title="Permanent link">&para;</a></h2>
+<p>The version of the kernel that we are going to build in the following section is version 6.5.7, which is available at:</p>
+<p><a href="https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz">www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz</a></p>
+<p>Let’s begin the process.</p>
+<ol>
+<li>
+<p>First, download the kernel source into your current working directory using the following curl command. Type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl -L -o linux-6.5.7.tar.xz \
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz
+</code></pre></div>
+</li>
+<li>
+<p>The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, you need to decompress and untar the source file to use the source. </p>
+<p>Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>tar xvJf linux-5.*.tar.xz
+</code></pre></div>
+</li>
+</ol>
+<h2 id="building-the-kernel">Building the Kernel<a class="headerlink" href="#building-the-kernel" title="Permanent link">&para;</a></h2>
+<p>In this section, we’re going to review the process of configuring and building a kernel. This is in contrast to macOS or Windows-based operating systems, which come preconfigured and therefore contain support for many features you may or may not want.</p>
+<p>The Linux design philosophy allows the individual to decide on the important parts of the kernel. This individualized design has the important benefit of letting you thin down the feature list so that Linux can run as efficiently as possible.</p>
+<p>This is also one of the reasons why it is possible to customize Linux to run in various hardware setups, from low-end systems, to embedded systems, to high-end systems.</p>
+<p>Two main steps are required in building a kernel:</p>
+<ul>
+<li>configuring</li>
+<li>compiling</li>
+</ul>
+<p>The first step in building the kernel is configuring its features. Usually, your desired feature list will be based on whatever hardware you need to support. This, of course, means that you’ll need a list of that hardware.</p>
+<p>On a system that is already running Linux, you can run commands like – lspci, lshw and so on to help show detailed information about the exact hardware setup on your system. On  RPM-based distros these utilities are provided by the pciutils<em>.rpm and lshw</em>.rpm packages.</p>
+<p>Having a better understanding of what constitutes your underlying hardware can help you better determine what you need in your custom kernel. You’re ready to start configuring the kernel.</p>
+<h3 id="sanitizing-the-build-environment">Sanitizing the build environment<a class="headerlink" href="#sanitizing-the-build-environment" title="Permanent link">&para;</a></h3>
+<p>We can begin the actual configuration with a rough idea of the types of hardware and features that our new kernel needs to support. But first, some background information.</p>
+<p>The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program).</p>
+<p>These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.</p>
+<div class="admonition warning">
+<p class="admonition-title">warning: Avoid Needless Kernel Upgrades</p>
+<p>Bear in mind that if you have a working system that is stable and well behaved, there is little reason to upgrade the kernel unless one of these conditions holds for you:</p>
+<ul>
+<li>A security or bug fix affects your system and must be applied</li>
+<li>You need a specific new feature in a stable release</li>
+</ul>
+<p>In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless.</p>
+<p>On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.</p>
+</div>
+<p>The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:</p>
+<ul>
+<li><strong>make mrproper</strong> This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.</li>
+<li><strong>make clean</strong> This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).</li>
+<li><strong>make menuconfig</strong> This target invokes a text-based editor interface with menus, option lists, and text-based dialog boxes for configuring the kernel.</li>
+<li><strong>make xconfig</strong> This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.</li>
+<li><strong>make gconfig</strong> This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.</li>
+<li><strong>make olddefconfig</strong> This target uses the existing .config file in the current working directory, updates the dependencies, and automatically sets new symbols to their default values.</li>
+<li><strong>make help</strong> This target will show you all the other possible make targets and also serves as a quick online help system.</li>
+</ul>
+<p>We will use only one of the targets to configure the kernel in this section. In particular, we will use the make menuconfig command. The menuconfig kernel config editor is a simple and popular text-based configuration utility that consists of menus, radio button lists, and dialogs.  </p>
+<p>It has a simple and clean interface that can be easily navigated with your keyboard and is almost intuitive to use.</p>
+<p>We need to change (cd) into the kernel source directory, after which we can begin the kernel configuration.
+But before beginning the actual kernel configuration, you should clean (prepare) the kernel build environment by using the make mrproper command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&gt; cd linux-5.*
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>&gt; make  O=~/build/kernel mrproper
+</code></pre></div>
+<h3 id="kernel-configuration">Kernel Configuration<a class="headerlink" href="#kernel-configuration" title="Permanent link">&para;</a></h3>
+<p>Next, we will step through the process of configuring a Linux 5.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we’ll pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any new kernel feature you want. Specifically, we’ll enable support for the NTFS file system into our custom kernel.</p>
+<p>Most modern Linux distros ship with a kernel configuration file for the running kernel available on the local file system as a compressed or regular file. On our sample Rocky system, this file resides in the /boot directory and is usually named something like config-*.</p>
+<p>The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. A config file similar to this one is what we aim to create through the process of configuring the kernel. The only difference between the file we’ll create and the ready-made one is that we will add further minor customization to ours.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Using a known, preexisting config file as a framework for creating our own custom file helps ensure that we don’t waste too much time duplicating the efforts that other people have already put into finding what works and what doesn’t work!</p>
+</div>
+<p>The following steps cover how to configure the kernel. We will be using a text-based kernel configuration utility, which will allow you to follow along in your terminal regardless of whether you are using a GUI desktop environment or not.</p>
+<ol>
+<li>
+<p>To begin, we’ll copy over and rename the preexisting config file from the /boot directory into our kernel build environment:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>&gt; cp /boot/config-`uname -r` ~/build/kernel/.config
+</code></pre></div>
+    We use <code>uname -r</code> here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Linux kernel configuration editor starts explicitly looking for and generates a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.</p>
+</div>
+</li>
+<li>
+<p>Launch the graphical kernel configuration utility:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&gt; make O=~/build/kernel menuconfig
+</code></pre></div>
+<p>A screen similar to this will appear:</p>
+</li>
+</ol>
+<p><img alt="Main Kernel Configuration screen" src="../images/Il01-kernel.png" /></p>
+<div class="highlight"><pre><span></span><code>The kernel configuration screen that appears is divided into roughly three areas.
+The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
+The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items. And finally, the bottom of the screen displays the actual actions/options that the user can choose.
+</code></pre></div>
+<ol>
+<li>
+<p>Next, we’ll add support for NTFS into our custom kernel for demonstration purposes.</p>
+<p>While at the main configuration screen, use your arrow keys to navigate to and highlight the File systems item. With File systems selected, press enter to view the sub-menu or child items for File systems.</p>
+<p>In the File Systems section, use your arrow keys to navigate to DOS/FAT/NT Filesystems. Press enter to see the child items for DOS/FAT/NT Filesystems.</p>
+</li>
+<li>
+<p>In the DOS/FAT/NT Filesystems section, navigate to NTFS file system support.</p>
+<p>Type M (uppercase) to enable modules to support for the NTFS file system.</p>
+<p>Use the arrow keys to navigate down to NTFS debugging support (NEW) and then press y to include it.</p>
+<p>Use the arrow keys to navigate down to NTFS write support and then press y to include it.
+When you are done, the letter M or an asterisk symbol (*) should appear beside each option, like the ones shown here:</p>
+<p><img alt="Kernel Configuration File Systems screen" src="../images/Il02-kernel.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For each of the configurable options, in the kernel configuration utility, empty angle parentheses, &lt;&gt;, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module.</p>
+<p>And the asterisk symbol in angle parentheses, &lt;*&gt;, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.</p>
+</div>
+</li>
+<li>
+<p>Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen. Return to the main kernel configuration screen by pressing esc twice again on your keyboard.</p>
+</li>
+<li>
+<p>Finally, save your changes to the .config file in the root of your kernel source tree and exit the kernel configuration application after saving the file by pressing esc twice again on your keyboard.</p>
+</li>
+<li>
+<p>A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected and then press enter.</p>
+</li>
+<li>
+<p>After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree. You are almost ready to build your kernel!</p>
+</li>
+<li>
+<p>We need to complete a few more customizations on our Rocky distro. Type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sed -ri &#39;/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=&quot;&quot;/g&#39; ~/build/kernel/.config
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example, to view the effect of the NTFS file system support that we enabled previously, type the following:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>&gt; grep NTFS ~/build/kernel/.config
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>CONFIG_NTFS_FS=m
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>CONFIG_NTFS_DEBUG=y
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>CONFIG_NTFS_RW=y
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">A Quick Note on Kernel Modules</p>
+<p>Loadable module support is a Linux kernel feature that allows kernel modules' dynamic loading (or removal).    </p>
+<p>Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.</p>
+<p>Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.</p>
+</div>
+</li>
+</ol>
+<h3 id="compiling-the-kernel">Compiling the Kernel<a class="headerlink" href="#compiling-the-kernel" title="Permanent link">&para;</a></h3>
+<p>In the preceding section, we walked through the process of creating a configuration file for the custom kernel that we want to build. In this section, we will perform the actual build of the kernel. But before doing this, we will add one simpler customization to the entire process.</p>
+<p>The final customization will be to add an extra piece of information used in the final name of our kernel. This will help us be able to differentiate this kernel from any other kernel with the same version number. We will add the tag “custom” to the kernel version information. This can be done by editing the main Makefile and appending the tag that we want to the EXTRAVERSION variable.</p>
+<p>The compilation stage of the kernel-building process is by far the easiest, but it also takes the most time. All that is needed at this point is simply to execute the make command, which will then automatically generate and take care of any dependency issues, compile the kernel itself, and compile any features (or drivers) that were enabled as loadable modules.</p>
+<p>Because of the amount of code that needs to be compiled, be prepared to wait a few minutes, at the very least, depending on your system's processing power. Let’s dig into the specific steps required to compile your new kernel.</p>
+<ol>
+<li>
+<p>First, we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file.
+We want to change the line in the file that looks like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>EXTRAVERSION =
+</code></pre></div>
+<p>To this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>EXTRAVERSION = -custom
+</code></pre></div>
+<p>Use the following <code>sed</code> command to make the change. Type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sed  -i &#39;s/^EXTRAVERSION.*/EXTRAVERSION = -custom/&#39;  Makefile
+</code></pre></div>
+<p>Of course, you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!</p>
+</li>
+<li>
+<p>Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>&gt; make O=~/build/kernel kernelversion
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:</p>
+<div class="highlight"><pre><span></span><code>```
+&gt; make -j N
+```
+where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
+
+```
+&gt; make -j 8
+```
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>The only command that is needed here to compile the kernel is the make command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>&gt; make  O=~/build/kernel
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>make[1]: Entering directory &#39;/home/super/build/kernel&#39;
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>SYNC    include/config/auto.conf.cmd
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>GEN     Makefile
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>HOSTCC  scripts/kconfig/conf.o
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>HOSTLD  scripts/kconfig/conf
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>GEN     Makefile
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>...&lt;OUTPUT TRUNCATED&gt;…
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>LD [M]  sound/usb/usx2y/snd-usb-usx2y.ko
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>LD [M]  sound/x86/snd-hdmi-lpe-audio.ko
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>LD [M]  sound/xen/snd_xen_front.ko
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>LD [M]  virt/lib/irqbypass.ko
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>make[1]: Leaving directory &#39;/home/super/build/kernel&#39;
+</code></pre></div>
+</li>
+<li>
+<p>The end product of this command (that is, the kernel) is sitting pretty and waiting in the path:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>~/build/kernel/arch/x86/boot/bzImage
+</code></pre></div>
+</li>
+<li>
+<p>We need to install the modules because we compiled portions of the kernel as modules (for example, the NTFS module). Type the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>&gt; sudo make O=~/build/kernel modules_install
+</code></pre></div>
+<p>On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/6.5.7-custom/. This is the path from which the kernel will load all loadable modules, as needed.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result, you could easily end up with a <code>/lib/modules/6.5.7-custom/</code> directory that is close to  5GB in size!</p>
+<p>For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  </p>
+<p>This can be done by including the <code>INSTALL_MOD_STRIP=1</code> option to the <code>make modules_install</code> command.</p>
+</div>
+</li>
+</ol>
+<h2 id="installing-the-kernel">Installing the Kernel<a class="headerlink" href="#installing-the-kernel" title="Permanent link">&para;</a></h2>
+<p>Assuming you have a PC and are working out of the <code>~/build/kernel/</code> directory, the compiled kernel that was created in the previous exercise will be located in this path - <code>&lt;kernel-build-dir&gt;/arch/x86/boot/bzImage</code> or, to be precise, in our example  <code>~/build/kernel/arch/x86/boot/bzImage</code>.</p>
+<p>The corresponding map file for this will be located at ~/build/kernel/System.map. You’ll need both files for the install phase.</p>
+<p>The System.map file is useful when the kernel is misbehaving and generating “Oops” messages. An “Oops” is generated on some kernel errors because of kernel bugs or faulty hardware.</p>
+<p>This error is akin to the Blue Screen of Death (BSOD) in Microsoft Windows. These messages include a lot of detail about the system's current state, including several hexadecimal numbers.</p>
+<p>System.map gives Linux a chance to turn those hexadecimal numbers into readable names, making debugging easier. Although this is mostly for the benefit of developers, it can be handy when you’re reporting a problem.</p>
+<p>Let’s go through the steps required to install the new kernel image.</p>
+<ol>
+<li>
+<p>While in the root of your kernel build directory, copy and rename the bzImage file into the /boot directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>&gt; sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>/boot/vmlinuz-&lt;kernel-version&gt;
+</code></pre></div>
+<p>Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-6.5.7-custom. So here’s the exact command for this example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&gt; sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>/boot/vmlinuz-6.5.7-custom
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The decision to name the kernel image vmlinuz-6.5.7-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).</p>
+</div>
+</li>
+<li>
+<p>Now that the kernel image is in place, copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>&gt; sudo cp -v  ~/build/kernel/System.map \
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>/boot/System.map-6.5.7-custom
+</code></pre></div>
+</li>
+<li>
+<p>With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>&gt; kernel-install add   &lt;kernel-version&gt;  &lt;kernel-image&gt;
+</code></pre></div>
+<p>Here, <kernel-version> is the version number (and name) of the kernel. And <kernel-image> is the path to the newly compiled kernel image.</p>
+<p>For our example, type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>&gt; sudo kernel-install \
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>add  6.5.7-custom /boot/vmlinuz-6.5.7-custom
+</code></pre></div>
+</li>
+</ol>
+<p>The kernel-install command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.</p>
+<p>In particular, the tool does the following:</p>
+<ul>
+<li>It creates the appropriate initial RAM file system image (the initramfs image—that is, the /boot/initramfs-<kernel-version>.img file).
+To do this manually on systems where kernel-install is not available, use the mkinitramfs command.</li>
+<li>It runs the depmod command (which creates a list of module dependencies).</li>
+<li>It updates the boot loader configuration.</li>
+</ul>
+<p>For systems running the newer versions of GRUB2, the file will be <code>/boot/grub2/grub.cfg</code>. For EFI based systems /boot/efi/<distro>/fedora/grub.cfg is also updated.</p>
+<p>And for systems running the legacy versions of GRUB, this will be the /boot/grub/grub.conf or /boot/grub/menu.lst file. And for very new distros that have implemented the new Boot Loader Specification (BLS) a new boot loader entry will be added to the /boot/loader/entries/ directory, or any directory pointed to by the variable named "blsdir".</p>
+<p>On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: <code>/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-6.5.7-custom.conf</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>&gt; sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-6.5.7-custom.conf
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>title Rocky Linux (6.5.7-custom) 8.5 (Green Obsidian)
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>version 6.5.7-custom
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>linux /vmlinuz-6.5.7-custom
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>initrd /initramfs-6.5.7-custom.img $tuned_initrd
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>options $kernelopts $tuned_params
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>id rocky-20220212013135-6.5.7-custom
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>grub_users $grub_users
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>grub_arg --unrestricted
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>grub_class kernel
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader housekeeping tasks. For example, you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.</p>
+</div>
+<h2 id="booting-the-custom-kernel">Booting the custom Kernel<a class="headerlink" href="#booting-the-custom-kernel" title="Permanent link">&para;</a></h2>
+<p>The next stage is to test the kernel to ensure the system can boot with it.</p>
+<ol>
+<li>
+<p>Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>&gt;  sudo reboot
+</code></pre></div>
+</li>
+<li>
+<p>After the system boots up, you can use the uname command to find out the name of the current kernel:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>&gt;  uname -r
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>6.5.7-custom
+</code></pre></div>
+</li>
+<li>
+<p>You will recall that one of the features that we added to our new kernel is the ability to support the NTFS file system. Make sure that the new kernel does indeed have support for NTFS by displaying information about the NTFS module:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>[rockstar ~]$ modinfo ntfs
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>filename:       /lib/modules/6.5.7-custom/kernel/fs/ntfs/ntfs.ko
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>license:        GPL
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>version:        2.1.32
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>description:    NTFS 1.2/3.x driver - Copyright …..
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>...OUTPUT TRUNCATED...
+</code></pre></div>
+</li>
+</ol>
+<p>And that’s it!</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../phpmyadmin-install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How to install phpMyAdmin on Ubuntu">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                How to install phpMyAdmin on Ubuntu
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../books/" class="md-footer__link md-footer__link--next" aria-label="Next: Books Home">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Books Home
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 <a href="https://github.com/masesto"  target="_blank" rel="noopener">by Shele</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/masesto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/masesto1" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/masesto/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.instant", "navigation.footer", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

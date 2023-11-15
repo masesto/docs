@@ -1,0 +1,1605 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation how to install Linux or Unix">
+      
+      
+      
+        <link rel="canonical" href="https://masesto.github.io/docs/guides/alma-installation/">
+      
+      
+        <link rel="prev" href="../rocky-installation/">
+      
+      
+        <link rel="next" href="../linux-basic/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>AlmaLinux Installation Guide - Shele Docs & Tutorials</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#last-updated-2023-02-09" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Shele Docs &amp; Tutorials" class="md-header__button md-logo" aria-label="Shele Docs & Tutorials" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Shele Docs & Tutorials
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AlmaLinux Installation Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../books/" class="md-tabs__link">
+          
+  
+    
+  
+  Books
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Shele Docs &amp; Tutorials" class="md-nav__button md-logo" aria-label="Shele Docs & Tutorials" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Shele Docs & Tutorials
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rocky Linux 9 Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Alma Linux 9 Installation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Alma Linux 9 Installation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#last-updated-2023-02-09" class="md-nav__link">
+    last updated: 2023-02-09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#almalinux-installation-guide-isos" class="md-nav__link">
+    AlmaLinux installation guide (ISOs)
+  </a>
+  
+    <nav class="md-nav" aria-label="AlmaLinux installation guide (ISOs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-almalinux-iso" class="md-nav__link">
+    Download AlmaLinux ISO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iso-verification" class="md-nav__link">
+    ISO verification
+  </a>
+  
+    <nav class="md-nav" aria-label="ISO verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    macOS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-an-image-on-a-usb" class="md-nav__link">
+    Write an image on a USB
+  </a>
+  
+    <nav class="md-nav" aria-label="Write an image on a USB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos_1" class="md-nav__link">
+    macOS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-media" class="md-nav__link">
+    Live Media
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Commands Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Advanced Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vi-editor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VI Editor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glpi-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to install GLPI on Ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phpmyadmin-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to install phpMyAdmin on Ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-linux-kernel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and Installing Custom Linux Kernels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Books
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Books
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Administrators Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            System Administrators Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/admin_guide/00-toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Learning Linux with Rocky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/admin_guide/01-presentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/admin_guide/03-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Learning Ansible
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Learning Ansible
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/learning_ansible/00-toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Learning Ansible with Rocky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#last-updated-2023-02-09" class="md-nav__link">
+    last updated: 2023-02-09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#almalinux-installation-guide-isos" class="md-nav__link">
+    AlmaLinux installation guide (ISOs)
+  </a>
+  
+    <nav class="md-nav" aria-label="AlmaLinux installation guide (ISOs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-almalinux-iso" class="md-nav__link">
+    Download AlmaLinux ISO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iso-verification" class="md-nav__link">
+    ISO verification
+  </a>
+  
+    <nav class="md-nav" aria-label="ISO verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    macOS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-an-image-on-a-usb" class="md-nav__link">
+    Write an image on a USB
+  </a>
+  
+    <nav class="md-nav" aria-label="Write an image on a USB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos_1" class="md-nav__link">
+    macOS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-media" class="md-nav__link">
+    Live Media
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h6 id="last-updated-2023-02-09">last updated: 2023-02-09<a class="headerlink" href="#last-updated-2023-02-09" title="Permanent link">&para;</a></h6>
+<h1 id="almalinux-installation-guide-isos">AlmaLinux installation guide (ISOs)<a class="headerlink" href="#almalinux-installation-guide-isos" title="Permanent link">&para;</a></h1>
+<p>These guide steps describe how to download AlmaLinux ISO, create a USB stick, and install AlmaLinux OS using it.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>System requirements:<ul>
+<li>Disk space: 10GB minimum, 20GB recommended</li>
+<li>Minimum 1.5 GB RAM</li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>More about requirements: <a href="https://access.redhat.com/articles/rhel-limits"><em>Red Hat Enterprise Linux</em> Technology Capabilities and Limits</a>.</p>
+</div>
+<ul>
+<li>A USB flash drive of size 8GB as a minimum, 12GB or more recommended</li>
+</ul>
+<h2 id="download-almalinux-iso">Download AlmaLinux ISO<a class="headerlink" href="#download-almalinux-iso" title="Permanent link">&para;</a></h2>
+<p>AlmaLinux supports both firmware interfaces: <strong>BIOS</strong> and <strong>UEFI</strong>. </p>
+<p>AlmaLinux supports four architectures:</p>
+<ul>
+<li><em>Intel/AMD (x86_64)</em></li>
+<li><em>ARM64 (aarch64)</em></li>
+<li><em>IBM PowerPC (ppc64le)</em></li>
+<li><em>IBM Z (s390x)</em></li>
+</ul>
+<p>AlmaLinux has 3 types of ISOs for each supported architecture:</p>
+<ul>
+<li><code>boot</code> - a single network installation CD image that downloads packages over the Internet.</li>
+<li><code>minimal</code> - a minimal self-containing DVD image that makes offline installation possible.</li>
+<li><code>dvd</code>  - a full installation DVD image that contains mostly all AlmaLinux packages. </li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are also <strong>latest</strong> and <strong>update</strong> ISO images. <strong>Latest</strong> provides the latest minor version of the selected major version, like AlmaLinux-9-latest. <strong>Update</strong> files are ISOs that were rebuilt including some updates.</p>
+</div>
+<p>There are a few ways to download AlmaLinux ISO:</p>
+<ul>
+<li>Download AlmaLinux ISO from the mirror. Select the nearest to your geographic area mirror from the <a href="https://mirrors.almalinux.org/isos.html">list</a>. You need the <strong>version</strong>/isos/<strong>arch</strong>/ directory to download the suitable ISO.</li>
+<li>
+<p>Download from the <a href="https://repo.almalinux.org/">Public Package Repository</a>:</p>
+<ul>
+<li><a href="https://repo.almalinux.org/almalinux/8/isos/">AlmaLinux 8</a></li>
+<li><a href="https://repo.almalinux.org/almalinux/9/isos/">AlmaLinux 9</a></li>
+<li>Lower and beta versions can be found in the <a href="https://repo.almalinux.org/vault/">Vault</a></li>
+</ul>
+</li>
+<li>
+<p>Run the <code>curl</code> command in the command line:</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This command example is for downloading the <strong>DVD</strong> ISO of <strong>AlmaLinux 9.1</strong>. AlmaLinux ISOs are named using the following convention:</p>
+<p><strong>AlmaLinux-major version.minor version-architecture-ISO type.iso</strong></p>
+<p>Change the version, architecture and type to the ones you need. </p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ curl -O https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9.1-x86_64-dvd.iso
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>curl</code> is built-in into current versions of <em>Linux</em>, <em>macOS</em> and <em>Windows</em>.</p>
+</div>
+<h2 id="iso-verification">ISO verification<a class="headerlink" href="#iso-verification" title="Permanent link">&para;</a></h2>
+<h4 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h4>
+<p>Download and import the AlmaLinux public key:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.almalinux.org/almalinux/RPM-GPG-KEY-AlmaLinux-9
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$<span class="w"> </span>gpg<span class="w"> </span>--import<span class="w"> </span>RPM-GPG-KEY-AlmaLinux-9
+</code></pre></div>
+<p>Verify the downloaded ISO image checksum:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># download a checksums list</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.almalinux.org/almalinux/9/isos/x86_64/CHECKSUM
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># verify the checksums list, we are looking for a Good signature</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>$<span class="w"> </span>gpg<span class="w"> </span>--verify<span class="w"> </span>CHECKSUM
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>gpg:<span class="w"> </span>Signature<span class="w"> </span>made<span class="w"> </span>Tue<span class="w"> </span><span class="m">13</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">2022</span><span class="w"> </span><span class="m">14</span>:09:50<span class="w"> </span>CET
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>gpg:<span class="w">                </span>using<span class="w"> </span>RSA<span class="w"> </span>key<span class="w"> </span>BF18AC2876178908D6E71267D36CB86CB86B3716
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>gpg:<span class="w"> </span>Good<span class="w"> </span>signature<span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;AlmaLinux OS 9 &lt;packager@almalinux.org&gt;&quot;</span><span class="w"> </span><span class="o">[</span>unknown<span class="o">]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>gpg:<span class="w"> </span>WARNING:<span class="w"> </span>This<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>certified<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>trusted<span class="w"> </span>signature!
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>gpg:<span class="w">          </span>There<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>indication<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>signature<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>owner.
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>Primary<span class="w"> </span>key<span class="w"> </span>fingerprint:<span class="w"> </span>BF18<span class="w"> </span>AC28<span class="w"> </span><span class="m">7617</span><span class="w"> </span><span class="m">8908</span><span class="w"> </span>D6E7<span class="w">  </span><span class="m">1267</span><span class="w"> </span>D36C<span class="w"> </span>B86C<span class="w"> </span>B86B<span class="w"> </span><span class="m">3716</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># calculate the downloaded ISO SHA256 checksum</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>$<span class="w"> </span>sha256sum<span class="w"> </span>AlmaLinux-9.1-x86_64-dvd.iso
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>2a44e3f8a012c132da19b9aae2bf949e20b116f0a2a7ac3eca111972f4ac952f<span class="w">  </span>AlmaLinux-9.1-x86_64-dvd.iso
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># compare it with the expected checksum, it should be the same</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>$<span class="w"> </span>cat<span class="w"> </span>CHECKSUM<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;SHA256.*AlmaLinux-9.1-x86_64-dvd.iso&#39;</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>SHA256<span class="w"> </span><span class="o">(</span>AlmaLinux-9.1-x86_64-dvd.iso<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>2a44e3f8a012c132da19b9aae2bf949e20b116f0a2a7ac3eca111972f4ac952f
+</code></pre></div>
+<h4 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># calculate the downloaded ISO SHA256 checksum</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>AlmaLinux-9.1-x86_64-dvd.iso
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>2a44e3f8a012c132da19b9aae2bf949e20b116f0a2a7ac3eca111972f4ac952f<span class="w">  </span>AlmaLinux-9.1-x86_64-dvd.iso
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># download the CHECKSUM file</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.almalinux.org/almalinux/9/isos/x86_64/CHECKSUM
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># compare it with the expected checksum, it should be the same</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>$<span class="w"> </span>cat<span class="w"> </span>CHECKSUM<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;SHA256.*AlmaLinux-9.1-x86_64-dvd.iso&#39;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>SHA256<span class="w"> </span><span class="o">(</span>AlmaLinux-9.1-x86_64-dvd.iso<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>2a44e3f8a012c132da19b9aae2bf949e20b116f0a2a7ac3eca111972f4ac952f
+</code></pre></div>
+<h4 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>C:<span class="se">\&gt;</span><span class="w"> </span>certUtil<span class="w"> </span>-hashfile<span class="w"> </span>C:<span class="se">\A</span>lmaLinux-9.1-x86_64-dvd.iso<span class="w"> </span>SHA256
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>SHA256<span class="w"> </span><span class="nb">hash</span><span class="w"> </span>of<span class="w"> </span>AlmaLinux-9.1-x86_64-dvd.iso:
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>2a44e3f8a012c132da19b9aae2bf949e20b116f0a2a7ac3eca111972f4ac952f
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>CertUtil:<span class="w"> </span>-hashfile<span class="w"> </span><span class="nb">command</span><span class="w"> </span>completed<span class="w"> </span>successfully.
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># download the CHECKSUM file</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>C:<span class="se">\&gt;</span><span class="w"> </span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.almalinux.org/almalinux/9/isos/x86_64/CHECKSUM
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># compare it with the expected checksum, it should be the same</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>C:<span class="se">\&gt;</span><span class="w"> </span>findstr<span class="w"> </span>/i<span class="w"> </span>/r<span class="w"> </span>/c:<span class="s2">&quot;SHA256.*AlmaLinux-9.1-x86_64-dvd.iso&quot;</span><span class="w"> </span>CHECKSUM
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>SHA256<span class="w"> </span><span class="o">(</span>AlmaLinux-9.1-x86_64-dvd.iso<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>2a44e3f8a012c132da19b9aae2bf949e20b116f0a2a7ac3eca111972f4ac952f
+</code></pre></div>
+<h2 id="write-an-image-on-a-usb">Write an image on a USB<a class="headerlink" href="#write-an-image-on-a-usb" title="Permanent link">&para;</a></h2>
+<p>Use the following steps and commands depending on OS you are using to write an image on a USB.</p>
+<h4 id="linux_1">Linux<a class="headerlink" href="#linux_1" title="Permanent link">&para;</a></h4>
+<p>Use the <code>dd</code> command for any Linux OS. </p>
+<p>Insert your target USB and locate it. There are different ways to do it, but here are some of them:</p>
+<ul>
+<li>
+<p><code>sudo fdisk -l</code>  - this command shows you the connected block storage devices, including the USB devices. </p>
+</li>
+<li>
+<p><code>lsblk</code> - this command gives you all the available block storage devices, including the USB block storage devices.</p>
+</li>
+<li>
+<p><code>sudo blkid</code> - this command gives you the same information as <code>lsblk</code>, but you have to run it as root. </p>
+</li>
+</ul>
+<p>You need to look for /dev/sda or /dev/sdb or /dev/sdc, which is your target USB.</p>
+<p>After you found out the location of your target USB, navigate to the location of your source ISO. Run the dd command to copy files from ISO to USB: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo dd if=./AlmaLinux-9.1-x86_64-dvd.iso of=/dev/sdX status=progress
+</code></pre></div>
+<ul>
+<li><code>dd</code>: Start the dd command to write the DVD/CD iso image.</li>
+<li><code>if=AlmaLinux-9.1-x86_64-dvd.iso</code>: path to the input file.</li>
+<li><code>of=/dev/sdX</code>: path to destination USB disk/stick (you need to replace 'X').</li>
+<li><code>status=progress</code>: display a progress bar while writing the image to the USB stick.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This example is for AlmaLinux 9.1. Replace the version with the one you need to work with other AlmaLinux images.</p>
+</div>
+<h4 id="windows_1">Windows<a class="headerlink" href="#windows_1" title="Permanent link">&para;</a></h4>
+<p>For Windows OS there is a helpful free and open-source application - <a href="https://rufus.ie/">Rufus</a>. </p>
+<p>Open the application, choose your target USB, and ISO you need to burn, and press <code>start</code>.</p>
+<h4 id="macos_1">macOS<a class="headerlink" href="#macos_1" title="Permanent link">&para;</a></h4>
+<p>The cross-platform tool <a href="https://www.balena.io/etcher/">balenaEtcher</a> is used to write images on macOS. It is simple too. Open balenaEtcher, choose the image and the USB, and press Flash.</p>
+<p>You can also use <code>dd</code> form CLI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo dd if=./AlmaLinux-9.1-x86_64-dvd.iso of=/dev/diskXXX status=progress
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Look at the Linux example above for detailed command elements description for the <code>dd</code> command.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To determine the <code>XXX</code> (on our machine it was <code>disk2s1</code>) open the <code>Disk Utility</code> app. Choose your USB drive in the <code>External</code> section and check the disk name in the <code>Device</code> field:</p>
+<p><img alt="image" src="../images/installation-guide-macos-usb.png" /></p>
+</div>
+<p>Now you have AlmaLinux ready on a USB stick.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Before starting the installation, you might need to define which system's mode you are booting and installing - <strong>UEFI</strong> or <strong>BIOS</strong>. </li>
+<li>Insert and boot the USB stick. You'll see the AlmaLinux welcome menu:</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-welcome-menu.png" /></p>
+<ul>
+<li>Automatically, the recommended option <em>Test this media &amp; install AlmaLinux 9.1</em> is highlighted. Choosing this option will run the installation media check to verify that it's usable and that the installation won't be aborted in the process. After the media check completes successfully, the installer screen will pop up automatically.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can choose the first option <em>Install AlmaLinux 9.1</em>. In this case, you will only see some boot messages before the installer will pop up. The installation media check won't be performed.</p>
+</div>
+<ul>
+<li>When the installer boots, the first thing you need to do, is to choose a language that will be used during the installation process.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-installation-language.png" />
+Choose the language you'd like and press the <strong>Continue</strong> button.</p>
+<ul>
+<li>Next, the <em>Installation Summary</em> window will appear. It contains sections that you can configure:</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-installation-summary.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Sections that are marked with <strong>red</strong> color are necessary to be customized to begin the installation.</p>
+</div>
+<ul>
+<li>
+<p><strong>LOCALIZATION</strong> section:</p>
+<ul>
+<li><em>Keyboard</em> - you may choose and specify the system's keyboard layouts here. By default, there are an English layout and a language chosen during the previous step.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-keyboard.gif" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><em>Language Support</em> - the default supported language is the language you chose for the installation process. You can add support for additional languages if you need it.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-language-support.png" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><em>Time &amp; Date</em> - this option allows you to select the timezone you need for your machine. You can choose the location from the <em>Region</em>/<em>City</em> lists or select if from the map. There is the Network Time option that allows the system to automatically set the time when this option is enabled. This option can be set to <em>ON</em> or <em>OFF</em> by default. It depends on your installation source.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-time-date.gif" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+</li>
+<li>
+<p><strong>SOFTWARE</strong> - this section allows you to add the installation source and additional repositories if needed.</p>
+<ul>
+<li><em>Installation Source</em> - the installation source is to be specified here. When using an ISO image for the installation using, the installation source will be automatically specified as Local media.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are using the <code>BOOT</code> ISO image to perform the installation, you will need to provide the <code>&lt;version&gt;/BaseOS/x86_64/kickstart/</code> repository from the selected mirror as the Installation Source if the installer will not be able to find the closest mirror for some reason.</p>
+<p>There are no extra Installation Sources required if you decided to go with either the minimal or DVD ISO images.  </p>
+</div>
+<p><strong>When you've finished with the changes, click on the <code>Done</code> button.</strong></p>
+<ul>
+<li>
+<p><em>Software Selection</em> - this section contains two fields:</p>
+<ul>
+<li><em>Base Environment</em> - this field will be defined automatically according to the ISO type you are using for the installation.</li>
+<li><em>Additional Software for the Selected Environment</em> - you can choose additional software to be installed. The list of available additional software depends on the chosen variant in the <em>Base Environment</em> field.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-software-selection.gif" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><strong>SYSTEM</strong> - this section allows you to customize the hardware of the system to you your needs like creating drive partitions, enabling Encryption, KDUMP, specifying the Network and choosing a security profile:<ul>
+<li><em>Installation destination</em> - you will see available disks for the system installation as <em>Local Standard Disks</em>. You can click on the disk you need. If your system has only one disk, it'll be automatically chosen. By default, <em>Storage Configuration</em> will be marked as <em>Automatic</em>.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to create disk partitions by yourself, choose the <em>Custom</em> option here. </p>
+</div>
+<p><img alt="image" src="../images/installation-guide-installation-destination.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to encrypt your data, select this option in the <strong>Encryption</strong> section. You'll be asked to type a <em>passphrase</em> after clicking on the <kbd>Done</kbd> button.</p>
+</div>
+<p><img alt="image" src="../images/installation-guide-encryption.gif" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><em>KDUMP</em> - by default, kdump will be marked as enabled with automatic memory reservation.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-kdump.png" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><em>Network &amp; Host Name</em> - all correctly detected networks will be listed in the left field. It'll be also automatically connected. You can add a network device and configure the chosen network in this section.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-network.png" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li>
+<p><em>Security Profile</em> - no profile is chosen by default, as applying a security policy is not necessary. The applied security policy will be installed in the system using the compliance policies defined by SCAP. You can choose one of the available security profiles:</p>
+<ul>
+<li><em>ANSSI-BP-028 (enhanced)</em></li>
+<li><em>ANSSI-BP-028 (high)</em></li>
+<li><em>ANSSI-BP-028 (intermediary)</em></li>
+<li><em>ANSSI-BP-028 (minimal)</em></li>
+<li><em>[DRAFT] CIS AlmaLinux 9 Benchmark for Level 2 - Server</em></li>
+<li><em>[DRAFT] CIS AlmaLinux 9 Benchmark for Level 1 - Server</em></li>
+<li><em>[DRAFT] CIS AlmaLinux 9 Benchmark for Level 1 - Workstation</em></li>
+<li><em>[DRAFT] CIS AlmaLinux 9 Benchmark for Level 2 - Workstation</em></li>
+<li><em>[DRAFT] Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)</em></li>
+<li><em>Australian Cyber Security Centre (ACSC) Essential Eight</em></li>
+<li><em>Health Insurance Portability and Accountability Act (HIPAA)</em></li>
+<li><em>Australian Cyber Security Centre (ACSC) ISM Official</em></li>
+<li><em>[DRAFT] Protection Profile for General Purpose Operating Systems</em></li>
+<li><em>PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 9</em></li>
+<li><em>[DRAFT] DISA STIG for Red Hat Enterprise Linux 9</em></li>
+<li><em>[DRAFT] DISA STIG with GUI for Red Hat Enterprise Linux 9</em></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-security-profiles.gif" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are interested in more details about Security Profiles, check the <a href="https://wiki.almalinux.org/documentation/openscap-guide.html">OpenSCAP Guide for AlmaLinux 8</a> and <a href="https://wiki.almalinux.org/documentation/openscap-guide-for-9.html">OpenSCAP Guide for AlmaLinux 9</a>.</p>
+</div>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><strong>USER SETTINGS</strong> - in this section, you are able to create a password for the root user account and create user accounts.<ul>
+<li><em>Root Password</em> - as the root user is the most privileged account, you must set a strong password for it to protect this account. Type the password in the <em>Root Password</em> text field and type it once more in the <em>Confirm</em> text field to confirm the password.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-root.gif" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li><em>User Creation</em> - this window allows you to create administrative and non-administrative users. To create a user fill in the <em>Full Name</em> and <em>User Name</em> fields, set and confirm the password, and enable the <em>Make this user administrator</em> field if needed. The <em>Require the password to use this account</em> option is enabled by default. You can leave it enabled or click on the checkbox to remove the check to disable this option.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-user.gif" /></p>
+<p><strong>When you've finished with the changes, click on the <kbd>Done</kbd> button.</strong></p>
+<ul>
+<li>When you are finished with the customization, click on the <strong>Begin Installation</strong> button to start the installation process.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-begin-installation.gif" /></p>
+<p>You will see the process running and its progress. Also, different task messages will appear.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you don't want to proceed, you can safely quit the process by pressing the <kbd>Quit</kbd> button or resetting the machine.</p>
+</div>
+<ul>
+<li>Wait for the installation process to complete successfully and click on the <kbd>Reboot</kbd> button to restart the system.</li>
+</ul>
+<p><img alt="image" src="../images/installation-guide-reboot.png" /></p>
+<ul>
+<li>When the system reboots, log in and enjoy your AlmaLinux system.</li>
+</ul>
+<h2 id="live-media">Live Media<a class="headerlink" href="#live-media" title="Permanent link">&para;</a></h2>
+<p>AlmaLinux also provides Live Media images with different desktop environment options:</p>
+<ul>
+<li>GNOME-Mini</li>
+<li>GNOME</li>
+<li>KDE</li>
+<li>XFCE</li>
+<li>MATE</li>
+</ul>
+<p>Using Live Media You can try AlmaLinux OS before installing. You can find more information on the <a href="https://wiki.almalinux.org/LiveMedia.html">Live Media</a> wiki page.</p>
+<div class="admonition trademark notices">
+<p class="admonition-title">Trademark</p>
+</div>
+<p>Red Hat, Red Hat Enterprise Linux are trademarks or registered trademarks of Red Hat, Inc. or its subsidiaries in the United States and other countries.</p>
+<p>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries. </p>
+<p>macOS is the registered trademark of Apple Inc. in the U.S. and other countries.</p>
+<p>Windows is the registered trademark of Microsoft Corporation in the United States and other countries.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../rocky-installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Rocky Linux 9 Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Rocky Linux 9 Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../linux-basic/" class="md-footer__link md-footer__link--next" aria-label="Next: Linux Commands Basics">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Linux Commands Basics
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 <a href="https://github.com/masesto"  target="_blank" rel="noopener">by Shele</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/masesto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/masesto1" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/masesto/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.instant", "navigation.footer", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>
