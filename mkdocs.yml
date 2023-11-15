@@ -97,6 +97,7 @@ nav:
     - Linux Advanced Commands: guides/advanced-commands.md
     - VI Editor: guides/vi-editor.md
     - How to install GLPI on Ubuntu: guides/glpi-install.md
+    - How to install phpMaAdmin on Ubuntu: guides/phpmyadmin-install.md
     - Building and Installing Custom Linux Kernels: guides/custom-linux-kernel.md
   - Books:
     - books/index.md
